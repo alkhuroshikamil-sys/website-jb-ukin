@@ -1,117 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JB UKIN'S</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0f;
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      font-size: 64px;
-      font-weight: bold;
-      margin-top: 80px;
-      color: #ffe46e;
-      text-shadow: 0 0 20px #ffdd55;
-    }
-
-    .subtitle {
-      font-size: 24px;
-      margin-top: -10px;
-      letter-spacing: 2px;
-    }
-
-    .tagline {
-      border: 2px solid #ffdd55;
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 30px;
-      border-radius: 8px;
-      color: #ffdd55;
-    }
-
-    .menu-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 80px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angkringan Pak Ye - Replikasi Instan</title>
     
-    /* PENTING: Style untuk Card */
-    .card {
-      width: 260px;
-      padding: 25px;
-      border: 2px solid #ffdd55;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
-      box-shadow: 0 0 20px rgba(255, 214, 76, 0.3);
-      transition: 0.3s;
-      position: relative; /* Diperlukan agar tautan bisa menutupi seluruh area */
-    }
+    <style>
+        /* RESET DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
 
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(255, 214, 76, 0.6);
-    }
+        body {
+            background-color: #fff;
+            color: #333;
+        }
 
-    /* PENTING: Style untuk Tautan */
-    .card a {
-        /* Membuat tautan menutupi seluruh kartu */
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        text-decoration: none; /* Menghilangkan garis bawah default */
-        color: inherit;
-        z-index: 1; /* Pastikan tautan berada di atas konten */
-    }
+        /* --- HEADER & NAVIGASI --- */
+        header {
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+            position: sticky; 
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+        }
 
-    .card-title {
-      font-size: 22px;
-      font-weight: bold;
-      color: #ffdd55;
-      margin-bottom: 10px;
-    }
+        .header-top {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+        }
 
-    .card-desc {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-  </style>
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 25px; 
+        }
+
+        .nav-left a, .nav-right a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-left a:hover, .nav-right a:hover {
+            color: #000;
+        }
+
+        .logo h1 {
+            font-size: 1.4em;
+            letter-spacing: 6px;
+            font-weight: 900;
+        }
+        
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+
+        /* --- HERO BANNER --- */
+        .hero-banner {
+            background: url('kopi.jpeg') center center/cover no-repeat;
+            height: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 0 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner h2 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .hero-banner p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .shop-button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 35px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .shop-button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid-section {
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #menu-terfavorit {
+            padding-top: 60px;
+            margin-top: -60px;
+        }
+
+
+        .product-grid-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            text-align: left;
+            overflow: hidden;
+            border: 1px solid #ddd; 
+            padding-bottom: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 3/4; 
+            display: block;
+            object-fit: cover;
+            margin-bottom: 10px;
+            transition: transform 0.4s ease-in-out; 
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.03); 
+            filter: brightness(0.9);
+        }
+
+        .product-info {
+            padding: 0 15px;
+        }
+
+        .product-info h3 {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .product-info p {
+            font-weight: bold;
+            color: #000;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        /* QUANTITY CONTROLS (Input Jumlah) */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 15px;
+        }
+
+        .quantity-control button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1;
+            transition: background-color 0.2s;
+        }
+
+        .quantity-control button:hover {
+            background-color: #555;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ccc;
+            height: 30px;
+            font-weight: bold;
+        }
+
+        /* --- ORDER SUMMARY (Checkout) --- */
+        .order-summary {
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 30px 5%;
+            border-top: 2px solid #000;
+            background-color: #f9f9f9;
+            text-align: right;
+        }
+
+        .order-summary p {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .checkout-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .checkout-button:hover {
+            background-color: #333;
+        }
+        
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #f4f4f4;
+            font-size: 0.8em;
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* RESPONSIVENESS (Media Queries) */
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+
+            .main-nav {
+                justify-content: space-between;
+                padding: 15px 20px;
+            }
+            
+            .hero-banner {
+                height: 400px;
+            }
+            
+            .hero-banner h2 {
+                font-size: 2.5em;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+        }
+        
+        /* CSS untuk Pengaturan Halaman */
+        .page-section {
+            display: none; /* Sembunyikan secara default */
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        
+        #home-view {
+            display: block; /* Tampilkan Home View secara default */
+        }
+
+        /* --- PAYMENT VIEW STYLE (Halaman Baru) --- */
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .payment-container h2 {
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .payment-options button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #000;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .payment-options button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .qris-code {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            display: none; /* Sembunyikan QRIS secara default */
+        }
+        
+        .qris-code img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .payment-total {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #cc0000;
+        }
+
+        /* --- CONTACT VIEW STYLE --- */
+        .contact-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .contact-profiles {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-card {
+            width: 300px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+        
+        .profile-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-card h3 {
+            margin-top: 10px;
+            font-size: 1.5em;
+        }
+        
+        .profile-card p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .profile-card a {
+            display: block;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .profile-card a:hover {
+            background-color: #555;
+        }
+
+        /* --- STORY VIEW STYLE (Halaman Baru) --- */
+        .story-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px 5%;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .story-container h2 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .story-container strong {
+            color: #000;
+        }
+        
+    </style>
 </head>
 <body>
+    <header>
+        <div class="header-top">
+            <p>MONGGO LANGSUNG MORO PAK YEE</p>
+        </div>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="#" onclick="showPage('menu-view')">MENU</a>
+                <a href="#" onclick="showPage('contact-view')">CONTACT PERSON</a>
+                <a href="#" onclick="showPage('story-view')">CERITA PAK YE</a>
+            </div>
+            <div class="logo">
+                <h1 onclick="showPage('home-view')" style="cursor: pointer;">ANGKRINGAN PAK YE</h1>
+            </div>
+            <div class="nav-right">
+                <a href="#">CARI</a>
+                <a href="#">LOGIN</a>
+                <a href="#" onclick="showPage('menu-view')">TAS (<span id="cart-item-count">0</span>)</a>
+            </div>
+        </nav>
+    </header>
 
-  <div class="header">
-    <p class="subtitle">SINCE 2025</p>
-    <h1>JB UKIN'S</h1>
-    <p class="subtitle">Diamond | Jual Beli Akun</p>
-    <div class="tagline">Tempat jual beli akun serta top up aman dan terpercaya!</div>
-  </div>
+    <main>
+        
+        <div id="home-view" class="page-section">
+            <section class="hero-banner">
+                <h2>YANG DEKAT MENDEKAT YANG JAUH MERAPAT</h2> 
+                <p>monggo langsung bae prend.</p>
+                <button class="shop-button" onclick="showPage('menu-view')">BELANJA SEKARANG</button>
+            </section>
+        </div>
+        
+        <div id="menu-view" class="page-section">
+            <section class="product-grid-section">
+                <h2>MENU TERFAVORIT</h2>
+                <div class="product-grid" id="product-list">
+                    </div>
+            </section>
+            
+            <section class="order-summary">
+                <p>Total Pesanan: <span id="total-price-menu">Rp 0</span></p>
+                <button class="checkout-button" onclick="showPaymentPage()">CHECKOUT SEKARANG</button>
+            </section>
+        </div>
+        
+        <div id="payment-view" class="page-section">
+            <div class="payment-container">
+                <h2>PILIH METODE PEMBAYARAN</h2>
+                
+                <p class="payment-total">TOTAL BAYAR: <span id="final-total-price">Rp 0</span></p>
 
-  <div class="menu-container">
-    
-    <div class="card">
-        <a href="topup.html" aria-label="Top Up Diamond"></a>
-        <div class="card-title">Top Up Diamond</div>
-        <div class="card-desc">Top up diamond Mobile Legends murah.</div>
-    </div>
+                <div class="payment-options">
+                    <button onclick="processPayment('tunai')">BAYAR LANGSUNG (TUNAI)</button>
+                    
+                    <button onclick="processPayment('qris')">PEMBAYARAN VIA QRIS</button>
+                </div>
 
-    <div class="card">
-        <a href="jualbeli.html" aria-label="Jual Beli Akun"></a>
-        <div class="card-title">Jual Beli Akun</div>
-        <div class="card-desc">Jual beli akun berbagai game.</div>
-    </div>
-  </div>
+                <div class="qris-code" id="qris-box">
+                    <p>Scan Kode QRIS Ini:</p>
+                    <img src="pembayaran.png" alt="Kode QRIS Angkringan Pak Ye">
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #555;">Mohon konfirmasi ke kasir setelah pembayaran via QRIS.</p>
+                </div>
+            </div>
+        </div>
 
+        <div id="contact-view" class="page-section">
+            <div class="contact-container">
+                <h2>HUBUNGI PRODUSER KOPI KAMI</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1em; color: #333;">Pilih salah satu kontak di bawah untuk pertanyaan kemitraan atau pemesanan skala besar.</p>
+                
+                <div class="contact-profiles">
+                    
+                    <div class="profile-card">
+                        <img src="https://via.placeholder.com/100x100?text=Budi" alt="Pak Budi" style="border-radius: 50%;">
+                        <h3>RAMLI</h3>
+                        <p>Pemilik Angkringan & Partnership</p>
+                        <a href="tel:+6281234567890">TELEPON SEKARANG</a>
+                        <a href="mailto:budi.angkringan@email.com">KIRIM EMAIL</a>
+                    </div>
+
+                    <div class="profile-card">
+                        <img src="https://via.placeholder.com/100x100?text=Agung" alt="Mas Agung" style="border-radius: 50%;">
+                        <h3>EPAN</h3>
+                        <p>Manajer Operasional & Distribusi</p>
+                        <a href="tel:+6285678901234">TELEPON SEKARANG</a>
+                        <a href="https://wa.me/6285678901234">CHAT VIA WHATSAPP</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div id="story-view" class="page-section">
+            <div class="story-container">
+                <h2>SEJARAH SINGKAT BERDIRINYA ANGKRINGAN PAK YE</h2>
+                
+                <p>
+                    Kisah Angkringan Pak Ye dimulai pada tahun 2000, tepat di sudut jalan yang ramai di kota Lamongan. **Pak Ye**, nama panggilan akrab dari Bapak Yono, adalah seorang pensiunan buruh pabrik yang memiliki satu cinta sejati: **Kopi Hitam yang Legendaris**.
+                </p>
+
+                <p>
+                    Awalnya, Pak Ye hanya membuat kopi dan teh panas untuk dinikmati sendiri dan teman-teman ronda-nya. Namun, karena racikan kopi hitamnya yang "legit" (manis, pahit, dan pekat pas), banyak tetangga yang mulai meminta Pak Ye untuk berjualan. 
+                </p>
+
+                <p>
+                    Dengan modal seadanya, sebuah gerobak kayu sederhana dibeli. Pada hari pertama, hanya ada tiga menu: Kopi Hitam, Teh Panas, dan tiga bungkus nasi kucing. Malam itu, semua ludes terjual.
+                </p>
+
+                <p>
+                    Seiring berjalannya waktu, Angkringan Pak Ye tidak hanya terkenal karena kopinya, tetapi juga karena suasananya yang hangat dan ramah. Di sini, siapapun bisa duduk, berbagi cerita, tanpa melihat status.
+                </p>
+
+                <p>
+                    **Filosofi Angkringan Pak Ye** sederhana: **"Yang Dekat Mendekat, Yang Jauh Merapat."** Kami tidak hanya menjual kopi dan makanan, kami menjual kebersamaan, nostalgia, dan tempat singgah yang nyaman dari hiruk pikuk kehidupan. Est 2000, warkop berdiri, dan semangatnya tak pernah padam.
+                </p>
+            </div>
+        </div>
+        </main>
+
+    <footer>
+        <p>&copy; est 2000 warkop berdiri | Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script>
+        // Data dummy produk
+        const products = [
+            {
+                id: 1,
+                name: 'KOPI HITAM LEGIT',
+                price: 'Rp 5.000',
+                unitPrice: 5000,
+                image: 'kopihitam.jpeg'
+            },
+            {
+                id: 2,
+                name: 'KOPI SUSU JOSJIS',
+                price: 'Rp 6.000',
+                unitPrice: 6000,
+                image: 'kopisusu.jpeg'
+            },
+            {
+                id: 3,
+                name: 'ES TEH JUWUMBO',
+                price: 'Rp 6.000',
+                unitPrice: 6000,
+                image: 'esteh.jpeg'
+            },
+        ];
+
+        let orderQuantities = {};
+        products.forEach(p => orderQuantities[p.id] = 0);
+        let currentTotal = 0; // Menyimpan total harga saat ini
+
+        // FUNGSI NAVIGASI HALAMAN
+        function showPage(viewId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(viewId).style.display = 'block';
+            window.scrollTo(0, 0); 
+        }
+        
+        // FUNGSI PERHITUNGAN DAN TAMPILAN
+        function formatRupiah(number) {
+            return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            let itemCount = 0;
+            
+            products.forEach(product => {
+                const quantity = orderQuantities[product.id];
+                total += quantity * product.unitPrice;
+                itemCount += quantity;
+            });
+            
+            currentTotal = total; // Simpan total ke variabel global
+            return { total, itemCount };
+        }
+
+        function updateTotalPrice() {
+            const { total, itemCount } = calculateTotal();
+            
+            document.getElementById('total-price-menu').textContent = formatRupiah(total);
+            document.getElementById('cart-item-count').textContent = itemCount;
+        }
+
+        function handleQuantityChange(productId, delta) {
+            const inputElement = document.getElementById(`quantity-${productId}`);
+            if (!inputElement) return;
+
+            let newQuantity = orderQuantities[productId] + delta;
+
+            if (newQuantity < 0) {
+                newQuantity = 0;
+            }
+            
+            orderQuantities[productId] = newQuantity;
+            inputElement.value = newQuantity;
+            updateTotalPrice();
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            const initialQuantity = orderQuantities[product.id] || 0;
+            
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                </div>
+                <div class="quantity-control">
+                    <span>Jumlah:</span>
+                    <button onclick="handleQuantityChange(${product.id}, -1)">-</button>
+                    <input type="number" id="quantity-${product.id}" class="quantity-input" value="${initialQuantity}" min="0" onchange="orderQuantities[${product.id}] = parseInt(this.value) || 0; updateTotalPrice();">
+                    <button onclick="handleQuantityChange(${product.id}, 1)">+</button>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadProducts() {
+            const productGrid = document.getElementById('product-list');
+            
+            if (productGrid) {
+                productGrid.innerHTML = ''; 
+                products.forEach(product => {
+                    const card = createProductCard(product);
+                    productGrid.appendChild(card);
+                });
+            }
+            updateTotalPrice(); 
+        }
+        
+        // FUNGSI PINDAH KE HALAMAN PEMBAYARAN
+        function showPaymentPage() {
+            const { total } = calculateTotal();
+            
+            if (total === 0) {
+                alert("Keranjang belanja masih kosong. Silakan pilih menu!");
+                return;
+            }
+            
+            // 1. Update total harga di halaman pembayaran
+            document.getElementById('final-total-price').textContent = formatRupiah(total);
+            
+            // 2. Sembunyikan QRIS box saat masuk
+            document.getElementById('qris-box').style.display = 'none';
+            
+            // 3. Tampilkan halaman pembayaran
+            showPage('payment-view');
+        }
+
+        // FUNGSI PROSES PEMBAYARAN
+        function processPayment(method) {
+            const { total } = calculateTotal();
+            
+            if (method === 'qris') {
+                // Tampilkan kode QRIS
+                document.getElementById('qris-box').style.display = 'block';
+                alert(`Total pembayaran ${formatRupiah(total)}. Silakan scan QRIS dan konfirmasi ke kasir.`);
+            } else if (method === 'tunai') {
+                // Notifikasi untuk pembayaran tunai
+                document.getElementById('qris-box').style.display = 'none';
+                alert(`Pembayaran Tunai sebesar ${formatRupiah(total)}. Silakan bayar langsung di kasir.`);
+            }
+        }
+
+        // Jalankan fungsi loadProducts dan tampilkan Home View saat dokumen selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts(); 
+            showPage('home-view'); 
+        });
+
+    </script>
 </body>
 </html>
-
