@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JB UKIN'S</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0f;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      
+      /* --- PENAMBAHAN LATAR BELAKANG DI SINI --- */
+      background-image: url('gambarml.jpg'); /* GANTI DENGAN NAMA FILE GAMBAR ANDA */
+      background-size: cover; /* Memastikan gambar menutupi seluruh area */
+      background-attachment: fixed; /* Membuat gambar tetap saat discroll */
+      background-position: center top; /* Fokus gambar di bagian tengah atas */
+    }
+
+    /* Lapisan Overlay Gelap */
+    /* Ini penting untuk memastikan teks tetap terbaca meskipun gambar latar terang */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Warna hitam dengan opacity 60% */
+        z-index: -1;
+    }
+    /* ------------------------------------------- */
+
+    h1 {
+      font-size: 64px;
+      font-weight: bold;
+      margin-top: 80px;
+      color: #ffe46e;
+      text-shadow: 0 0 20px #ffdd55;
+      position: relative; /* Penting agar elemen header berada di atas overlay */
+    }
+
+    .subtitle {
+      font-size: 24px;
+      margin-top: -10px;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .tagline {
+      border: 2px solid #ffdd55;
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+      color: #ffdd55;
+      position: relative;
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 80px;
+      position: relative;
+    }
+    
+    /* PENTING: Style untuk Card */
+    .card {
+      width: 260px;
+      padding: 25px;
+      border: 2px solid #ffdd55;
+      border-radius: 20px;
+      /* Mengurangi opacity background card agar overlay tidak terlalu gelap */
+      background: rgba(255, 255, 255, 0.08); 
+      box-shadow: 0 0 20px rgba(255, 214, 76, 0.3);
+      transition: 0.3s;
+      position: relative; 
+      backdrop-filter: blur(5px); /* Efek blur ringan di belakang kartu (opsional) */
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 214, 76, 0.6);
+    }
+
+    /* PENTING: Style untuk Tautan */
+    .card a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+        z-index: 1;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffdd55;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <p class="subtitle">SINCE 2025</p>
+    <h1>JB UKIN'S</h1>
+    <p class="subtitle">Diamond | Jual Beli Akun | Rekber</p>
+    <div class="tagline">Tempat jual beli akun serta top up aman dan terpercaya!</div>
+  </div>
+
+  <div class="menu-container">
+    
+    <div class="card">
+        <a href="topup.html" aria-label="Top Up Diamond"></a>
+        <div class="card-title">Top Up Diamond</div>
+        <div class="card-desc">Top up diamond Mobile Legends murah.</div>
+    </div>
+
+    <div class="card">
+        <a href="jualbeli.html" aria-label="Jual Beli Akun"></a>
+        <div class="card-title">Jual Beli Akun</div>
+        <div class="card-desc">Jual beli akun berbagai game.</div>
+    </div>
+    
+    <div class="card">
+        <a href="rekber.html" aria-label="Admin Rekber"></a>
+        <div class="card-title">Admin Rekber</div>
+        <div class="card-desc">Layanan rekening bersama terpercaya.</div>
+    </div>
+  </div>
+
+</body>
+</html>

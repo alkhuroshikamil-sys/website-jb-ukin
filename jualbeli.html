@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jual Beli Akun - JB UKIN'S</title>
+    <style>
+        /* Gaya Dasar */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* background: #0d0d0f; <--- Dihapus atau diganti */
+            color: white;
+            overflow-x: hidden;
+            padding: 0;
+            
+            /* --- PENAMBAHAN LATAR BELAKANG DI SINI --- */
+            background-image: url('LBakun.jpeg'); /* GANTI DENGAN NAMA FILE GAMBAR ANDA */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center top;
+        }
+
+        /* Lapisan Overlay Gelap */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Warna hitam dengan opacity 60% */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative; /* Penting untuk z-index di dalam body::before */
+        }
+        
+        /* Header Mobile Legends */
+        .header-mlbb {
+            padding: 10px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ffe46e; /* Garis kuning di bawah header */
+        }
+        
+        .header-mlbb h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .header-mlbb p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        /* AKUN REKOMENDASI Section */
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .recommendation-header h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+       
+        /* Tombol Filter (ditambahkan lagi karena hilang) */
+        .filter-button {
+            background: #1a1a2e;
+            color: white;
+            border: 2px solid #ffe46e;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .filter-button:hover {
+            background: #ffe46e;
+            color: #0d0d0f;
+        }
+
+        .filter-button::before {
+            content: "▾";
+            margin-right: 5px;
+            font-size: 20px;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        
+        /* Grid Akun */
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk item akun */
+            gap: 20px;
+        }
+
+        /* Kartu Akun */
+        .account-card {
+            /* Diubah menjadi transparan dan ditambahkan blur */
+            background: rgba(26, 26, 46, 0.7); /* Background transparan */
+            backdrop-filter: blur(4px); /* Efek blur ringan */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .account-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 214, 76, 0.3);
+        }
+
+        .account-image-wrapper {
+            position: relative;
+            height: 250px; /* Atur tinggi gambar agar konsisten */
+            overflow: hidden;
+        }
+
+        .account-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Pastikan gambar mengisi kotak */
+        }
+
+        /* Label SOLD/SELL */
+        .sold-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #0d0d0f;
+            color: #ffe46e;
+            border: 2px solid #ffe46e;
+            padding: 8px 30px;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        
+        /* Modifikasi warna label SELL agar berbeda */
+        .account-card:nth-child(2) .sold-label,
+        .account-card:nth-child(3) .sold-label,
+        .account-card:nth-child(4) .sold-label {
+            color: #4CAF50; /* Hijau untuk SELL */
+            border-color: #4CAF50;
+        }
+
+
+        .account-info {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .account-code {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5px;
+        }
+
+        .account-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffe46e;
+        }
+        
+        /* Media Query untuk tata letak responsif */
+        @media (max-width: 900px) {
+            .account-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .account-grid {
+                grid-template-columns: 1fr; /* 1 kolom di ponsel */
+            }
+            .recommendation-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .filter-button {
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header-mlbb">
+            <h1>Mobile Legends Stock Ukin's Stock</h1>
+            <p>Moonton</p>
+        </div>
+
+        <div class="recommendation-header">
+            <h2>AKUN REKOMENDASI</h2>
+            <button class="filter-button">Filter</button>
+        </div>
+        
+        <div class="account-grid">
+            
+            <div class="account-card">
+                <a href="#" style="text-decoration: none; color: inherit;">
+                    <div class="account-image-wrapper">
+                        <img src="akun800.jpeg" alt="Akun VENDERPEDIAML840" class="account-image">
+                        <div class="sold-label">SOLD</div>
+                    </div>
+                    <div class="account-info">
+                        <div class="account-code">KODE 001</div>
+                        <div class="account-price">Rp 875.000,00</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="account-card">
+                <a href="https://instagram.com/akun_instagram_anda" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="account-image-wrapper">
+                        <img src="akun200.jpeg" alt="Akun VENDERPEDIAML805" class="account-image">
+                        <div class="sold-label">SELL</div>
+                    </div>
+                    <div class="account-info">
+                        <div class="account-code">KODE 002</div>
+                        <div class="account-price">Rp 275.000,00</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="account-card">
+                <a href="https://instagram.com/akun_instagram_anda" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="account-image-wrapper">
+                        <img src="akun4.jpeg" alt="Akun VENDERPEDIAML825" class="account-image">
+                        <div class="sold-label">SELL</div>
+                    </div>
+                    <div class="account-info">
+                        <div class="account-code">KODE 003</div>
+                        <div class="account-price">Rp 4.500.000,00</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="account-card">
+                <a href="https://www.instagram.com/dimasmlna_sltn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="account-image-wrapper">
+                        <img src="akun1.jpeg" alt="Akun VENDERPEDIAML924" class="account-image">
+                        <div class="sold-label">SELL</div>
+                    </div>
+                    <div class="account-info">
+                        <div class="account-code">KODE 004</div>
+                        <div class="account-price">Rp 1.950.000,00</div>
+                    </div>
+                </a>
+            </div>
+
+            </div>
+        
+    </div>
+
+</body>
+</html>

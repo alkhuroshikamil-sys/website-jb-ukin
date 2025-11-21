@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - JB UKIN'S</title>
+    <style>
+        /* CSS umum (dari topup.html) */
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            color: white; 
+            
+            /* ==================================== */
+            /* ✅ LATAR BELAKANG BARU */
+            /* ==================================== */
+            background-color: #0d0d0f; /* Warna fallback */
+            background-image: url('LBcheckout.jpeg'); /* ⬅️ GANTI DENGAN NAMA FILE GAMBAR LATAR BELAKANG ANDA */
+            background-size: cover;
+            background-attachment: fixed; /* Latar belakang tetap saat scroll */
+            background-position: center;
+            /* ==================================== */
+        }
+        
+        .container { 
+            max-width: 800px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            /* Tambahkan sedikit latar belakang transparan agar tulisan lebih jelas */
+            background: rgba(13, 13, 15, 0.8); 
+            border-radius: 10px;
+        }
+        
+        .card { 
+            background: #1a1a2e; 
+            padding: 25px; 
+            border-radius: 10px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+        }
+        
+        .card-header { 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #ffdd55; 
+            margin-bottom: 15px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            padding-bottom: 10px; 
+        }
+        
+        /* CSS untuk Ringkasan */
+        .summary-item { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            font-size: 16px; 
+        }
+        .summary-item strong { color: #ffdd55; }
+
+        /* CSS untuk Opsi Pembayaran */
+        .payment-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            margin-top: 15px; 
+        }
+        
+        .payment-option { 
+            background: #0d0d0f; 
+            border: 2px solid transparent; 
+            border-radius: 8px; 
+            padding: 15px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        
+        .payment-option:hover { border-color: #ffdd55; }
+        .payment-option input[type="radio"] { display: none; }
+        
+        /* Efek saat opsi pembayaran dipilih */
+        .payment-option input[type="radio"]:checked + div { 
+            border-color: #ffdd55; 
+            box-shadow: 0 0 10px rgba(255, 214, 76, 0.6); 
+        }
+        
+        .payment-option-content { font-weight: bold; color: white; }
+        
+        /* Gaya untuk Logo Pembayaran */
+        .bank-logo { 
+            width: 50px; 
+            height: 50px; 
+            margin: 0 auto 5px auto; /* Pusatkan logo */
+            border-radius: 5px; 
+            /* background-color: #333; *//* Placeholder warna dihilangkan */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .bank-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* CSS untuk QRIS */
+        #qris-container { 
+            text-align: center; 
+            margin-top: 30px; 
+            padding: 20px; 
+            border: 1px dashed #ffdd55; 
+            border-radius: 10px; 
+            display: none; 
+        }
+        
+        #qris-code { 
+            width: 200px; 
+            height: 200px; 
+            background-color: white; 
+            margin: 15px auto; 
+            border-radius: 5px; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #qris-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Pastikan gambar QRIS mengisi div */
+        }
+        
+        .final-price { 
+            font-size: 28px; 
+            color: #ffe46e; 
+            font-weight: bold; 
+            margin-top: 10px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="card">
+            <div class="card-header">
+                Ringkasan Pesanan
+            </div>
+            
+            <div class="summary-item">
+                <span>ID Akun</span>
+                <span id="display-user-id"></span>
+            </div>
+            <div class="summary-item">
+                <span>Server</span>
+                <span id="display-server-id"></span>
+            </div>
+            <div class="summary-item">
+                <span>Layanan</span>
+                <span id="display-item-name"></span>
+            </div>
+            <div class="summary-item" style="margin-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 10px;">
+                <strong>Total Pembayaran</strong>
+                <strong id="display-price"></strong>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                Pilih Metode Pembayaran
+            </div>
+
+            <div class="payment-grid">
+                
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="BRI">
+                    <div class="payment-option-content">
+                        <div class="bank-logo"><img src="logobri.jpeg" alt="BRI Logo"></div>
+                        BRI (Bank/QRIS)
+                    </div>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="GOPAY">
+                    <div class="payment-option-content">
+                        <div class="bank-logo"><img src="logogopay.jpeg" alt="GOPAY Logo"></div>
+                        GOPAY (E-Wallet/QRIS)
+                    </div>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="DANA">
+                    <div class="payment-option-content">
+                        <div class="bank-logo"><img src="logodana.jpeg" alt="DANA Logo"></div>
+                        DANA (E-Wallet/QRIS)
+                    </div>
+                </label>
+
+            </div>
+        </div>
+        
+        <div id="qris-container" class="card">
+            <div class="card-header" style="text-align: center;">
+                Selesaikan Pembayaran dengan QRIS
+            </div>
+            <p>Pindai kode QR di bawah menggunakan aplikasi pembayaran Anda (GOPAY/DANA/Mobile Banking lain).</p>
+            
+            <div id="qris-code">
+                 <img src="pembayaran.png" alt="QRIS Code"> 
+            </div>
+            
+            <p>Total yang harus dibayar:</p>
+            <div class="final-price" id="final-price-qris"></div>
+            
+            <p style="font-size: 14px; color: #999;">*Pembayaran akan otomatis diverifikasi.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ambil data dari Session Storage
+            const userId = sessionStorage.getItem('userId');
+            const serverId = sessionStorage.getItem('serverId');
+            const itemName = sessionStorage.getItem('itemName');
+            // Konversi harga ke format Rupiah
+            const priceValue = parseInt(sessionStorage.getItem('price'));
+            // Tambahkan biaya layanan (misal 1000 IDR)
+            const finalPrice = priceValue + 1000; 
+            
+            const priceInRupiah = finalPrice.toLocaleString('id-ID', { 
+                style: 'currency', 
+                currency: 'IDR', 
+                minimumFractionDigits: 0 
+            });
+
+            // Tampilkan Ringkasan Pesanan
+            if (userId && serverId && itemName && priceValue) {
+                document.getElementById('display-user-id').textContent = userId;
+                document.getElementById('display-server-id').textContent = serverId;
+                document.getElementById('display-item-name').textContent = itemName;
+                
+                // Tampilkan harga awal + biaya layanan
+                document.getElementById('display-price').textContent = priceInRupiah; 
+            } else {
+                alert('Data pesanan tidak ditemukan. Kembali ke halaman Top Up.');
+                window.location.href = 'topup.html'; 
+                return;
+            }
+
+            // Atur Event Listener untuk Metode Pembayaran
+            const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+            const qrisContainer = document.getElementById('qris-container');
+            const finalPriceDisplay = document.getElementById('final-price-qris');
+
+            paymentMethods.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Tampilkan nominal pembayaran final dan QRIS
+                        finalPriceDisplay.textContent = priceInRupiah;
+                        qrisContainer.style.display = 'block'; 
+                        console.log('Metode terpilih:', this.value);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
